@@ -28,7 +28,7 @@ data class CurrentWeatherDto(
     @SerializedName("name")
     var city: String? = null,
 ) : WeatherDto {
-    fun toDomainWeatherDetails() = WeatherDetails(
+    fun toDomain() = WeatherDetails(
         location = Location(
             latitude = coordinates.latitude,
             longitude = coordinates.longitude,
