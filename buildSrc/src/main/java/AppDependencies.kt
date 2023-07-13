@@ -261,8 +261,12 @@ object AppDependencies {
     }
 
     private const val retrofit = "com.squareup.retrofit2:retrofit:${DependencyVersion.retrofit}"
+    private const val retrofitConverter =
+        "com.squareup.retrofit2:converter-gson:${DependencyVersion.retrofit}"
+
     fun DependencyHandler.retrofit() {
         add(ConfigurationName.IMPLEMENTATION.configName, retrofit)
+        add(ConfigurationName.IMPLEMENTATION.configName, retrofitConverter)
     }
 
     enum class ConfigurationName(val configName: String) {
