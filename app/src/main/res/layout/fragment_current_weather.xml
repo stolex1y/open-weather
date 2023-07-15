@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="currentWeather"
+            type="ru.stolexiy.openweather.ui.weather.current.CurrentWeather" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/temp_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/temperature"
+                app:isGone="@{currentWeather.temp == null}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/temp_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{currentWeather.temp}"
+                app:isGone="@{currentWeather.temp == null}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/temp_label"
+                app:layout_constraintTop_toTopOf="@id/temp_label"
+                tools:text="10°C" />
+
+            <TextView
+                android:id="@+id/temp_feels_like_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/feels_like"
+                app:isGone="@{currentWeather.feelsLike == null}"
+                app:layout_constraintStart_toStartOf="@id/temp_label"
+                app:layout_constraintTop_toBottomOf="@id/temp_label" />
+
+            <TextView
+                android:id="@+id/temp_feels_like_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{currentWeather.feelsLike}"
+                app:isGone="@{currentWeather.feelsLike == null}"
+                app:layout_constraintEnd_toEndOf="@id/temp_value"
+                app:layout_constraintStart_toEndOf="@id/temp_feels_like_label"
+                app:layout_constraintTop_toTopOf="@id/temp_feels_like_label"
+                tools:text="1°C" />
+
+            <TextView
+                android:id="@+id/humidity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/humidity"
+                app:isGone="@{currentWeather.humidity == null}"
+                app:layout_constraintStart_toStartOf="@id/temp_feels_like_label"
+                app:layout_constraintTop_toBottomOf="@id/temp_feels_like_label" />
+
+            <TextView
+                android:id="@+id/humidity_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{currentWeather.humidity}"
+                app:isGone="@{currentWeather.humidity == null}"
+                app:layout_constraintEnd_toEndOf="@id/temp_feels_like_value"
+                app:layout_constraintStart_toEndOf="@id/humidity_label"
+                app:layout_constraintTop_toTopOf="@id/humidity_label"
+                tools:text="10%" />
+
+            <TextView
+                android:id="@+id/wind_speed_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/wind_speed"
+                app:isGone="@{currentWeather.windSpeed == null}"
+                app:layout_constraintStart_toStartOf="@id/humidity_label"
+                app:layout_constraintTop_toBottomOf="@id/humidity_label" />
+
+            <TextView
+                android:id="@+id/wind_speed_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{currentWeather.windSpeed}"
+                app:isGone="@{currentWeather.windSpeed == null}"
+                app:layout_constraintEnd_toEndOf="@id/humidity_value"
+                app:layout_constraintStart_toEndOf="@id/wind_speed_label"
+                app:layout_constraintTop_toTopOf="@id/wind_speed_label"
+                tools:text="10 м/c" />
+
+            <TextView
+                android:id="@+id/pressure_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/pressure"
+                app:isGone="@{currentWeather.pressure == null}"
+                app:layout_constraintStart_toStartOf="@id/wind_speed_label"
+                app:layout_constraintTop_toBottomOf="@id/wind_speed_label" />
+
+            <TextView
+                android:id="@+id/pressure_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{currentWeather.pressure}"
+                app:isGone="@{currentWeather.pressure == null}"
+                app:layout_constraintEnd_toEndOf="@id/wind_speed_value"
+                app:layout_constraintStart_toEndOf="@id/pressure_label"
+                app:layout_constraintTop_toTopOf="@id/pressure_label"
+                tools:text="1013 ГПа" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

@@ -16,6 +16,8 @@ import AppDependencies.lifecycle
 import AppDependencies.material
 import AppDependencies.navigation
 import AppDependencies.retrofit
+import AppDependencies.splashScreen
+import AppDependencies.swipeRefreshLayout
 import AppDependencies.timberAndroid
 import modules.AppModuleConfig
 
@@ -96,4 +98,6 @@ dependencies {
     navigation()
     gson()
     retrofit()
+    swipeRefreshLayout()
+    splashScreen()
 }

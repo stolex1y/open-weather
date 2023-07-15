@@ -30,6 +30,8 @@ internal object DependencyVersion {
     const val gson = "2.10.1"
     const val preference = "1.2.0"
     const val retrofit = "2.9.0"
+    const val swipeRefreshLayout = "1.2.0-alpha01"
+    const val splashScreen = "1.0.0"
 
     //test
     const val junit4 = "4.13.2"

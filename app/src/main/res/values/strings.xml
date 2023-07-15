@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Open Weather</string>
+    <string name="internal_error">Произошла внутренняя ошибка приложения.</string>
+    <string name="forecast">Прогноз</string>
+    <string name="details">Подробнее</string>
+    <string name="now">Сейчас</string>
+    <string name="temperature">Температура</string>
+    <string name="humidity">Влажность</string>
+    <string name="pressure">Давление</string>
+    <string name="cloudiness">Облачность</string>
+    <string name="feels_like">Ощущается как</string>
+    <string name="rain_volume" formatted="true">Кол-во осадков за %1$d</string>
+    <string name="snow_volume" formatted="true">Кол-во снега за %1$d</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="wind_direction">Направление ветра</string>
+    <string name="wind_gust">Порывы ветра</string>
+    <string name="hectopascal">гПа</string>
+    <string name="meters_per_second">м/с</string>
+    <string name="miles_per_hour">мили/ч</string>
+    <string name="service_unavailable">Сервис недоступен. Проверьте подключение к интернету</string>
 </resources>

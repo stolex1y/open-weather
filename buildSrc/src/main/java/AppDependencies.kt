@@ -269,6 +269,20 @@ object AppDependencies {
         add(ConfigurationName.IMPLEMENTATION.configName, retrofitConverter)
     }
 
+    private const val swipeRefreshLayout =
+        "androidx.swiperefreshlayout:swiperefreshlayout:${DependencyVersion.swipeRefreshLayout}"
+
+    fun DependencyHandler.swipeRefreshLayout() {
+        add(ConfigurationName.IMPLEMENTATION.configName, swipeRefreshLayout)
+    }
+
+    private const val splashScreen =
+        "androidx.core:core-splashscreen:${DependencyVersion.splashScreen}"
+
+    fun DependencyHandler.splashScreen() {
+        add(ConfigurationName.IMPLEMENTATION.configName, splashScreen)
+    }
+
     enum class ConfigurationName(val configName: String) {
         KAPT("kapt"),
         IMPLEMENTATION("implementation"),
