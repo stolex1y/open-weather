@@ -11,4 +11,5 @@ interface Weather {
     val clouds: Int?
     val precipitation: Precipitation
     val wind: Wind
+    val unitsOfMeasure: UnitsOfMeasure
 }

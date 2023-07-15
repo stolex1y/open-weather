@@ -8,7 +8,7 @@ import ru.stolexiy.openweather.domain.model.WeatherForecast
 
 interface ForecastWeatherRemoteDao {
 
-    @GET("/forecast?lat=59.894444&lon=30.264168&units=metric&lang=ru")
+    @GET("forecast?lat=59.894444&lon=30.264168&units=metric&lang=ru")
     suspend fun get5dayForecast(): Response
 
     data class Response(

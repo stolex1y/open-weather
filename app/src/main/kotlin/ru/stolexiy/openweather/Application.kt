@@ -20,6 +20,10 @@ class Application : Application() {
                 }
             })
         }
+
+        Thread.currentThread().setUncaughtExceptionHandler { _, error ->
+            Timber.e(error, "Uncaught exception:")
+        }
     }
 
     companion object {

@@ -12,4 +12,5 @@ data class WeatherForecast(
     override val wind: Wind,
     override val timestamp: Calendar?,
     val precipitationProb: Double?,
+    override val unitsOfMeasure: UnitsOfMeasure = UnitsOfMeasure.METRIC,
 ) : Weather

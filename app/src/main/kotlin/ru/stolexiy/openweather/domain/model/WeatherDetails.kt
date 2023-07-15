@@ -11,4 +11,6 @@ data class WeatherDetails(
     override val precipitation: Precipitation,
     override val wind: Wind,
     override val timestamp: Calendar?,
-) : Weather
+    override val unitsOfMeasure: UnitsOfMeasure = UnitsOfMeasure.METRIC,
+) : Weather {
+}

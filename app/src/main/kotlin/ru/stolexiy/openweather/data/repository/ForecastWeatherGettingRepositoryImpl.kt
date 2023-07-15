@@ -3,12 +3,13 @@ package ru.stolexiy.openweather.data.repository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.withContext
 import ru.stolexiy.openweather.common.CoroutineDispatcherNames
-import ru.stolexiy.openweather.common.FlowExtensions.mapToResult
+import ru.stolexiy.openweather.common.FlowExtensions.emitResult
 import ru.stolexiy.openweather.data.remote.dao.ForecastWeatherRemoteDao
 import ru.stolexiy.openweather.domain.model.WeatherForecast
 import ru.stolexiy.openweather.domain.repository.ForecastWeatherGettingRepository
@@ -28,13 +29,15 @@ class ForecastWeatherGettingRepositoryImpl @Inject constructor(
         return flow {
             Timber.d("get weather forecast flow")
             while (true) {
-                emit(remoteDao.get5dayForecast().toDomain())
+                emitResult {
+                    remoteDao.get5dayForecast().toDomain()
+                }
                 delay(SYNC_DELAY_MS)
             }
         }
-            .onEach { Timber.w("update weather forecast") }
+            .distinctUntilChanged()
+            .onEach { Timber.v("update weather forecast") }
             .flowOn(dispatcher)
-            .mapToResult()
     }
 
     override suspend fun once(): Result<List<WeatherForecast>> = runCatching {

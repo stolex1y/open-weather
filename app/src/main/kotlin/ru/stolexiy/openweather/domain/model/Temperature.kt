@@ -5,4 +5,5 @@ data class Temperature(
     val feelsLike: Double?,
     val min: Double?,
     val max: Double?,
+    val unitsOfTempMeasure: UnitsOfTempMeasure = UnitsOfTempMeasure.CELSIUS
 )

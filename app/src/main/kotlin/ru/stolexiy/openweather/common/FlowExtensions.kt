@@ -1,15 +1,34 @@
 package ru.stolexiy.openweather.common
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 
+private const val DEFAULT_RETRY_DELAY = 10L * 1000L
+
 object FlowExtensions {
-    fun <T> Flow<T>.mapToResult() =
+    suspend fun <T> FlowCollector<Result<T>>.emitResult(
+        retryDelay: Long = DEFAULT_RETRY_DELAY,
+        action: suspend () -> T
+    ) {
+        runCatching {
+            action()
+        }.onFailure {
+            emit(Result.failure(it))
+            delay(retryDelay)
+            emitResult(retryDelay, action)
+        }.onSuccess {
+            emit(Result.success(it))
+        }
+    }
+
+    fun <T> Flow<T>.mapToResult(): Flow<Result<T>> =
         this.map { Result.success(it) }.catch {
             emit(Result.failure(it))
         }
