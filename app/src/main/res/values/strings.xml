@@ -8,14 +8,34 @@
     <string name="humidity">Влажность</string>
     <string name="pressure">Давление</string>
     <string name="cloudiness">Облачность</string>
-    <string name="feels_like">Ощущается как</string>
-    <string name="rain_volume" formatted="true">Кол-во осадков за %1$d</string>
-    <string name="snow_volume" formatted="true">Кол-во снега за %1$d</string>
-    <string name="wind_speed">Скорость ветра</string>
-    <string name="wind_direction">Направление ветра</string>
-    <string name="wind_gust">Порывы ветра</string>
+    <string name="feels_like">Ощущается</string>
+    <string name="per_1_h">За 1 час</string>
+    <string name="per_3_h">За 3 часа</string>
+    <string name="speed">Скорость</string>
+    <string name="direction">Направление</string>
+    <string name="gust">Порывы</string>
     <string name="hectopascal">гПа</string>
     <string name="meters_per_second">м/с</string>
     <string name="miles_per_hour">мили/ч</string>
     <string name="service_unavailable">Сервис недоступен. Проверьте подключение к интернету</string>
+    <string name="refresh">Обновить</string>
+    <string name="mm">мм</string>
+    <string name="direction_N">↓ С</string>
+    <string name="direction_NE">↙ СВ</string>
+    <string name="direction_E">← В</string>
+    <string name="direction_SE">↖ ЮВ</string>
+    <string name="direction_S">↑ Ю</string>
+    <string name="direction_SW">↗ ЮЗ</string>
+    <string name="direction_W">→ З</string>
+    <string name="direction_NW">↘ СЗ</string>
+    <string name="precipitation">Осадки</string>
+    <string name="min">Минимум</string>
+    <string name="max">Максимум</string>
+    <string name="rain">Дождь</string>
+    <string name="snow">Снег</string>
+    <string name="main_info">Общие сведения</string>
+    <string name="visibility">Видимость</string>
+    <string name="wind">Ветер</string>
+    <string name="meters">м</string>
+    <string name="miles">миль</string>
 </resources>

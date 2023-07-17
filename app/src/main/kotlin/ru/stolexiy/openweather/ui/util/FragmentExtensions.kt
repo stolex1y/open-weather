@@ -1,5 +1,7 @@
 package ru.stolexiy.openweather.ui.util
 
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,4 +19,7 @@ object FragmentExtensions {
             }
         }
     }
+
+    val Fragment.supportActionBar: ActionBar?
+        get() = (this.requireActivity() as AppCompatActivity).supportActionBar
 }

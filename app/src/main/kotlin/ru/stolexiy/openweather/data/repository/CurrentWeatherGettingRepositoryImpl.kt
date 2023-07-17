@@ -11,21 +11,21 @@ import kotlinx.coroutines.withContext
 import ru.stolexiy.openweather.common.CoroutineDispatcherNames
 import ru.stolexiy.openweather.common.FlowExtensions.emitResult
 import ru.stolexiy.openweather.data.remote.dao.CurrentWeatherRemoteDao
-import ru.stolexiy.openweather.domain.model.WeatherDetails
+import ru.stolexiy.openweather.domain.model.DomainWeatherDetails
 import ru.stolexiy.openweather.domain.repository.CurrentWeatherGettingRepository
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
 
-private const val SYNC_DELAY_MS: Long = 1000L * 60L * 5L
+private const val SYNC_DELAY_MS: Long = 1000L * 60L * 2L
 
 @Singleton
 class CurrentWeatherGettingRepositoryImpl @Inject constructor(
     private val remoteDao: CurrentWeatherRemoteDao,
     @Named(CoroutineDispatcherNames.IO_DISPATCHER) private val dispatcher: CoroutineDispatcher
 ) : CurrentWeatherGettingRepository {
-    override fun flow(): Flow<Result<WeatherDetails>> {
+    override fun flow(): Flow<Result<DomainWeatherDetails>> {
         return flow {
             Timber.d("get current weather flow")
             while (true) {
@@ -38,7 +38,7 @@ class CurrentWeatherGettingRepositoryImpl @Inject constructor(
             .flowOn(dispatcher)
     }
 
-    override suspend fun once(): Result<WeatherDetails> = runCatching {
+    override suspend fun once(): Result<DomainWeatherDetails> = runCatching {
         withContext(dispatcher) {
             remoteDao.getCurrentWeather().toDomain()
         }

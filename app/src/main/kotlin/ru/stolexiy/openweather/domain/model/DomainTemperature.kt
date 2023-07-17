@@ -1,6 +1,6 @@
 package ru.stolexiy.openweather.domain.model
 
-data class Temperature(
+data class DomainTemperature(
     val value: Double?,
     val feelsLike: Double?,
     val min: Double?,

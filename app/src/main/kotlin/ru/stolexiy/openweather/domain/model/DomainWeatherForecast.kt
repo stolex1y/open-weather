@@ -2,15 +2,16 @@ package ru.stolexiy.openweather.domain.model
 
 import java.util.Calendar
 
-data class WeatherForecast(
-    override val location: Location,
-    override val temperature: Temperature,
+data class DomainWeatherForecast(
+    override val location: DomainLocation,
+    override val temperature: DomainTemperature,
     override val pressure: Int?,
     override val humidity: Int?,
     override val clouds: Int?,
-    override val precipitation: Precipitation,
-    override val wind: Wind,
+    override val precipitation: DomainPrecipitation,
+    override val wind: DomainWind,
     override val timestamp: Calendar?,
     val precipitationProb: Double?,
+    override val visibility: Int?,
     override val unitsOfMeasure: UnitsOfMeasure = UnitsOfMeasure.METRIC,
-) : Weather
+) : DomainWeather

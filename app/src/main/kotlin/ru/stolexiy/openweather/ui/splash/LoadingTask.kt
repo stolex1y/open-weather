@@ -19,7 +19,6 @@ class LoadingTask(
             interpolator = AccelerateDecelerateInterpolator()
             duration = loadingTime
             addUpdateListener {
-                Timber.d("update progress")
                 progressIndicator.progress = it.animatedValue as Int
                 progressIndicator.invalidate()
             }

@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import ru.stolexiy.openweather.common.FlowExtensions.mapLatestResult
 import ru.stolexiy.openweather.core.di.CoroutineModule
-import ru.stolexiy.openweather.domain.model.WeatherDetails
+import ru.stolexiy.openweather.domain.model.DomainWeatherDetails
 import ru.stolexiy.openweather.domain.repository.CurrentWeatherGettingRepository
 import ru.stolexiy.openweather.ui.util.udf.AbstractViewModel
 import ru.stolexiy.openweather.ui.util.udf.IData
@@ -54,7 +54,7 @@ class CurrentWeatherViewModel @AssistedInject constructor(
     }
 
     data class Data(
-        val currentWeather: WeatherDetails? = null
+        val currentWeather: DomainWeatherDetails? = null
     ) : IData
 
     sealed interface State : IState {

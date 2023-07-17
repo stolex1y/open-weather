@@ -6,14 +6,11 @@
 
     <fragment
         android:id="@+id/current_weather"
-        android:name="ru.stolexiy.openweather.ui.weather.current.CurrentWeatherFragment"
-        android:label="@string/now" />
+        android:name="ru.stolexiy.openweather.ui.weather.current.CurrentWeatherFragment" />
     <fragment
         android:id="@+id/forecast_weather"
-        android:name="ru.stolexiy.openweather.ui.weather.forecast.ForecastWeatherFragment"
-        android:label="@string/forecast" />
+        android:name="ru.stolexiy.openweather.ui.weather.forecast.ForecastWeatherFragment" />
     <fragment
         android:id="@+id/weather_details"
-        android:name="ru.stolexiy.openweather.ui.weather.details.WeatherDetailsFragment"
-        android:label="@string/details" />
+        android:name="ru.stolexiy.openweather.ui.weather.details.CurrentWeatherDetailsFragment" />
 </navigation>

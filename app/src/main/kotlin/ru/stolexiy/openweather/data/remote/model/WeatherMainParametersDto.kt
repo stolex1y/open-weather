@@ -1,7 +1,7 @@
 package ru.stolexiy.openweather.data.remote.model
 
 import com.google.gson.annotations.SerializedName
-import ru.stolexiy.openweather.domain.model.Temperature
+import ru.stolexiy.openweather.domain.model.DomainTemperature
 
 data class WeatherMainParametersDto(
     var temp: Double? = null,
@@ -14,7 +14,7 @@ data class WeatherMainParametersDto(
     var pressure: Int? = null,
     var humidity: Int? = null
 ) {
-    fun toDomainTemperature() = Temperature(
+    fun toDomainTemperature() = DomainTemperature(
         value = temp,
         feelsLike = feelsLike,
         min = tempMin,

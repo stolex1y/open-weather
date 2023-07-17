@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/weather_details"
+        android:checked="false"
+        android:enabled="true"
+        android:icon="@drawable/list"
+        android:title="@string/details" />
+
+    <item
+        android:id="@id/current_weather"
+        android:checked="true"
+        android:enabled="true"
+        android:icon="@drawable/clock"
+        android:title="@string/now" />
+
+    <item
+        android:id="@id/forecast_weather"
+        android:checked="false"
+        android:enabled="true"
+        android:icon="@drawable/chart"
+        android:title="@string/forecast" />
+</menu>

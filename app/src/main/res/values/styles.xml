@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.OpenWeather.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/raleway_regular</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/raleway_light</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/raleway_light</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+    </style>
+
+    <style name="TextAppearance.OpenWeather.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/raleway_light</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+    </style>
+
+    <style name="Widget.OpenWeather.NavigationBar" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="backgroundTint">?android:attr/colorBackground</item>
+        <item name="background">?android:attr/colorBackground</item>
+        <item name="itemTextAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="itemTextAppearanceActive">?attr/textAppearanceTitleMedium</item>
+        <item name="elevation">0dp</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
+
+    <style name="Widget.OpenWeather.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">0dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.OpenWeather.MediumComponent</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="ShapeAppearance.OpenWeather.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+    </style>
+</resources>

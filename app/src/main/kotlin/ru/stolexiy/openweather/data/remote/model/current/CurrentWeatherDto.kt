@@ -7,46 +7,48 @@ import ru.stolexiy.openweather.data.remote.model.CoordinatesDto
 import ru.stolexiy.openweather.data.remote.model.WeatherDto
 import ru.stolexiy.openweather.data.remote.model.WeatherMainParametersDto
 import ru.stolexiy.openweather.data.remote.model.WindDto
-import ru.stolexiy.openweather.domain.model.Location
-import ru.stolexiy.openweather.domain.model.Precipitation
-import ru.stolexiy.openweather.domain.model.WeatherDetails
+import ru.stolexiy.openweather.domain.model.DomainLocation
+import ru.stolexiy.openweather.domain.model.DomainPrecipitation
+import ru.stolexiy.openweather.domain.model.DomainWeatherDetails
 
 data class CurrentWeatherDto(
-    override var main: WeatherMainParametersDto = WeatherMainParametersDto(),
-    override var clouds: CloudsDto = CloudsDto(),
-    override var wind: WindDto = WindDto(),
+    override var main: WeatherMainParametersDto,
+    override var visibility: Int?,
+    override var clouds: CloudsDto?,
+    override var wind: WindDto?,
     @SerializedName("dt")
-    override var timestamp: Long? = null,
+    override var timestamp: Long?,
     @SerializedName("coord")
     var coordinates: CoordinatesDto = CoordinatesDto(),
     @SerializedName("rain")
-    var rain: RainDto = RainDto(),
+    var rain: RainDto?,
     @SerializedName("snow")
-    var snow: SnowDto = SnowDto(),
+    var snow: SnowDto?,
     @SerializedName("sys")
     var sun: SunDto = SunDto(),
     @SerializedName("name")
-    var city: String? = null,
+    var city: String?,
 ) : WeatherDto {
-    fun toDomain() = WeatherDetails(
-        location = Location(
+    fun toDomain() = DomainWeatherDetails(
+        location = DomainLocation(
             latitude = coordinates.latitude,
             longitude = coordinates.longitude,
             city = city,
-            sunrise = sun.sunrise?.toCalendar(),
-            sunset = sun.sunset?.toCalendar()
+            sunrise = sun.sunrise.toCalendar(),
+            sunset = sun.sunset.toCalendar()
         ),
         temperature = main.toDomainTemperature(),
         pressure = main.pressure,
         humidity = main.humidity,
-        clouds = clouds.cloudiness,
-        precipitation = Precipitation(
-            rain1h = rain.volume1h,
-            rain3h = rain.volume3h,
-            snow1h = snow.volume1h,
-            snow3h = snow.volume3h
+        clouds = clouds?.cloudiness,
+        precipitation = DomainPrecipitation(
+            rain1h = rain?.volume1h,
+            rain3h = rain?.volume3h,
+            snow1h = snow?.volume1h,
+            snow3h = snow?.volume3h
         ),
-        wind = wind.toDomain(),
-        timestamp = timestamp?.toCalendar()
+        wind = (wind ?: WindDto()).toDomain(),
+        timestamp = timestamp?.toCalendar(),
+        visibility = visibility
     )
 }
