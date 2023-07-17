@@ -13,4 +13,5 @@ interface DomainWeather {
     val wind: DomainWind
     val visibility: Int?
     val unitsOfMeasure: UnitsOfMeasure
+    val weatherGroup: WeatherGroup
 }

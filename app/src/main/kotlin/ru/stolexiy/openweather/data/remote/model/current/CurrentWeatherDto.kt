@@ -1,11 +1,11 @@
 package ru.stolexiy.openweather.data.remote.model.current
 
 import com.google.gson.annotations.SerializedName
-import ru.stolexiy.openweather.common.DateUtils.toCalendar
 import ru.stolexiy.openweather.common.DateUtils.toCalendarFromSeconds
 import ru.stolexiy.openweather.data.remote.model.CloudsDto
 import ru.stolexiy.openweather.data.remote.model.CoordinatesDto
 import ru.stolexiy.openweather.data.remote.model.WeatherDto
+import ru.stolexiy.openweather.data.remote.model.WeatherGroupDto
 import ru.stolexiy.openweather.data.remote.model.WeatherMainParametersDto
 import ru.stolexiy.openweather.data.remote.model.WindDto
 import ru.stolexiy.openweather.domain.model.DomainLocation
@@ -13,7 +13,7 @@ import ru.stolexiy.openweather.domain.model.DomainPrecipitation
 import ru.stolexiy.openweather.domain.model.DomainWeatherDetails
 
 data class CurrentWeatherDto(
-    override var main: WeatherMainParametersDto,
+    override var main: WeatherMainParametersDto = WeatherMainParametersDto(),
     override var visibility: Int?,
     override var clouds: CloudsDto?,
     override var wind: WindDto?,
@@ -29,6 +29,8 @@ data class CurrentWeatherDto(
     var sun: SunDto = SunDto(),
     @SerializedName("name")
     var city: String?,
+    @SerializedName("weather")
+    var weatherGroup: List<WeatherGroupDto>,
 ) : WeatherDto {
     fun toDomain() = DomainWeatherDetails(
         location = DomainLocation(
@@ -50,6 +52,7 @@ data class CurrentWeatherDto(
         ),
         wind = (wind ?: WindDto()).toDomain(),
         timestamp = timestamp.toCalendarFromSeconds(),
-        visibility = visibility
+        visibility = visibility,
+        weatherGroup = (weatherGroup.firstOrNull() ?: WeatherGroupDto()).toDomain()
     )
 }

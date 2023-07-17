@@ -13,5 +13,6 @@ data class DomainWeatherForecast(
     override val timestamp: Calendar?,
     val precipitationProb: Double?,
     override val visibility: Int?,
+    override val weatherGroup: WeatherGroup,
     override val unitsOfMeasure: UnitsOfMeasure = UnitsOfMeasure.METRIC,
 ) : DomainWeather

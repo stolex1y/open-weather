@@ -41,4 +41,8 @@
     <string name="wind_speed">Скорость ветра</string>
     <string name="sunrise">Восход</string>
     <string name="sunset">Закат</string>
+    <string name="thunderstorm">Гроза</string>
+    <string name="cloudy">Облачно</string>
+    <string name="mist">Туман</string>
+    <string name="clear">Ясно</string>
 </resources>

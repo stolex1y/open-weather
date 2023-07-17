@@ -5,11 +5,13 @@ import ru.stolexiy.openweather.common.DateUtils.toCalendar
 import ru.stolexiy.openweather.common.DateUtils.toCalendarFromSeconds
 import ru.stolexiy.openweather.data.remote.model.CloudsDto
 import ru.stolexiy.openweather.data.remote.model.WeatherDto
+import ru.stolexiy.openweather.data.remote.model.WeatherGroupDto
 import ru.stolexiy.openweather.data.remote.model.WeatherMainParametersDto
 import ru.stolexiy.openweather.data.remote.model.WindDto
 import ru.stolexiy.openweather.domain.model.DomainLocation
 import ru.stolexiy.openweather.domain.model.DomainPrecipitation
 import ru.stolexiy.openweather.domain.model.DomainWeatherForecast
+import ru.stolexiy.openweather.domain.model.WeatherGroup
 
 data class WeatherForecastDto(
     override var main: WeatherMainParametersDto = WeatherMainParametersDto(),
@@ -24,6 +26,8 @@ data class WeatherForecastDto(
     var rain: RainDto?,
     @SerializedName("snow")
     var snow: SnowDto?,
+    @SerializedName("weather")
+    var weatherGroup: WeatherGroupDto = WeatherGroupDto(),
 ) : WeatherDto {
     fun toDomain(city: CityDto) = DomainWeatherForecast(
         location = DomainLocation(
@@ -47,5 +51,6 @@ data class WeatherForecastDto(
         timestamp = timestamp.toCalendarFromSeconds(),
         precipitationProb = precipitationProb,
         visibility = visibility,
+        weatherGroup = weatherGroup.toDomain(),
     )
 }

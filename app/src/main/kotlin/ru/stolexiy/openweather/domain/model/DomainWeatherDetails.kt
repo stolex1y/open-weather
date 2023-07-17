@@ -12,6 +12,7 @@ data class DomainWeatherDetails(
     override val wind: DomainWind,
     override val timestamp: Calendar,
     override val visibility: Int?,
+    override val weatherGroup: WeatherGroup,
     override val unitsOfMeasure: UnitsOfMeasure = UnitsOfMeasure.METRIC
 ) : DomainWeather {
 }

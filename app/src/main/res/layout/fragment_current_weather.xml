@@ -48,7 +48,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="@{currentWeather.dateStr}"
-                            android:textAppearance="@style/TextAppearance.OpenWeather.Subtitle"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
                             app:layout_constraintEnd_toStartOf="@+id/time"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
                             android:layout_marginStart="10dp"
                             android:gravity="start"
                             android:text="@{currentWeather.timeStr}"
-                            android:textAppearance="@style/TextAppearance.OpenWeather.Subtitle"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
                             app:layout_constraintBottom_toBottomOf="@id/date"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -75,7 +75,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end"
-                            android:text="@{currentWeather.temp}"
+                            android:text='@{currentWeather.mainInfo.temperature ?? "—"}'
                             android:textAppearance="?attr/textAppearanceDisplayLarge"
                             app:layout_constraintEnd_toStartOf="@+id/weather_icon"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -89,13 +89,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
+                            android:text='@{currentWeather == null ? "" : context.getString(currentWeather.mainInfo.weatherGroupLabel)}'
                             android:textAppearance="?attr/textAppearanceTitleMedium"
-                            app:drawableTopCompat="@drawable/sunny"
+                            android:drawableTop="@{currentWeather == null ? context.getDrawable(R.drawable.cloudy) : context.getDrawable(currentWeather.mainInfo.weatherGroupIcon)}"
                             app:layout_constraintBottom_toBottomOf="@id/temp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toEndOf="@+id/temp"
                             app:layout_constraintTop_toTopOf="@id/temp"
+                            tools:drawableTop="@drawable/sunny"
                             tools:text="Ясно" />
 
                         <TextView
@@ -143,7 +145,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:gravity="center"
-                            android:text='@{currentWeather.humidity ?? "—"}'
+                            android:text='@{currentWeather.mainInfo.humidity ?? "—"}'
                             android:textAppearance="?attr/textAppearanceHeadlineSmall"
                             app:layout_constraintEnd_toStartOf="@+id/visibility_value"
                             app:layout_constraintStart_toStartOf="@id/humidity_label"
@@ -155,7 +157,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text='@{currentWeather.windSpeed ?? "—"}'
+                            android:text='@{currentWeather.mainInfo.windSpeed ?? "—"}'
                             android:textAppearance="?attr/textAppearanceHeadlineSmall"
                             app:layout_constraintBottom_toBottomOf="@+id/humidity_value"
                             app:layout_constraintEnd_toStartOf="@+id/pressure_value"
@@ -169,7 +171,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text='@{currentWeather.pressure ?? "—"}'
+                            android:text='@{currentWeather.mainInfo.pressure ?? "—"}'
                             android:textAppearance="?attr/textAppearanceHeadlineSmall"
                             app:layout_constraintBottom_toBottomOf="@+id/visibility_value"
                             app:layout_constraintEnd_toEndOf="@+id/pressure_label"
@@ -231,7 +233,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="@{currentWeather.location.sunriseStr}"
+                            android:text='@{currentWeather.location.sunriseStr ?? "—"}'
                             android:textAppearance="?attr/textAppearanceHeadlineSmall"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/sunrise_icon"
@@ -285,7 +287,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="@{currentWeather.location.sunsetStr}"
+                            android:text='@{currentWeather.location.sunsetStr ?? "—"}'
                             android:textAppearance="?attr/textAppearanceHeadlineSmall"
                             app:layout_constraintEnd_toEndOf="@+id/sunset_icon"
                             app:layout_constraintStart_toStartOf="@+id/sunset_icon"
