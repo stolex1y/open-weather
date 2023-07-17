@@ -9,6 +9,7 @@ import androidx.annotation.StringRes
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ru.stolexiy.openweather.R
@@ -20,6 +21,7 @@ import ru.stolexiy.openweather.ui.util.FragmentExtensions.repeatOnViewLifecycle
 import ru.stolexiy.openweather.ui.util.FragmentExtensions.supportActionBar
 import ru.stolexiy.openweather.ui.weather.current.CurrentWeatherFragmentToolbarProvider
 import ru.stolexiy.openweather.ui.weather.current.CurrentWeatherViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,12 +39,12 @@ class CurrentWeatherDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setupTopToolbar()
         return inflater.inflate(R.layout.fragment_current_weather_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupTopToolbar()
         binding.apply {
             swipeRefreshLayout.setOnRefreshListener {
                 startDataUpdating()
@@ -50,6 +52,11 @@ class CurrentWeatherDetailsFragment : Fragment() {
         }
         observeData()
         observeState()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Timber.d("destroy view")
     }
 
     private fun observeState() {
@@ -95,12 +102,10 @@ class CurrentWeatherDetailsFragment : Fragment() {
     }
 
     private fun setupTopToolbar() {
-        supportActionBar?.show()
         val menuHost: MenuHost = requireActivity()
         val menuProvider: MenuProvider =
             CurrentWeatherFragmentToolbarProvider(requireContext(), this::startDataUpdating)
-        menuHost.addMenuProvider(menuProvider, viewLifecycleOwner)
-        menuHost.invalidateMenu()
+        menuHost.addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun showCurrentLocation(location: Location) {

@@ -1,7 +1,6 @@
 package ru.stolexiy.openweather
 
 import android.app.Application
-import android.os.Process
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
@@ -14,8 +13,7 @@ class Application : Application() {
             Timber.plant(object : Timber.DebugTree() {
                 override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
                     super.log(
-                        priority, "[$GLOBAL_TAG] " +
-                                "$tag | ${Process.getElapsedCpuTime()} ms", message, t
+                        priority, "[$GLOBAL_TAG] $tag", message, t
                     )
                 }
             })

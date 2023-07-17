@@ -76,6 +76,12 @@
         <item name="android:fontFamily">@font/raleway_light</item>
     </style>
 
+    <style name="TextAppearance.OpenWeather.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/raleway_light</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
     <style name="Widget.OpenWeather.NavigationBar" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="backgroundTint">?android:attr/colorBackground</item>
         <item name="background">?android:attr/colorBackground</item>
@@ -87,7 +93,7 @@
     </style>
 
     <style name="Widget.OpenWeather.CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardElevation">0dp</item>
+        <item name="cardElevation">15dp</item>
         <item name="shapeAppearance">@style/ShapeAppearance.OpenWeather.MediumComponent</item>
         <item name="strokeWidth">0dp</item>
     </style>

@@ -18,7 +18,7 @@ import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
 
-private const val SYNC_DELAY_MS: Long = 1000L * 60L * 2L
+private const val SYNC_DELAY_MS: Long = 1000L * 60L * 10L
 
 @Singleton
 class CurrentWeatherGettingRepositoryImpl @Inject constructor(

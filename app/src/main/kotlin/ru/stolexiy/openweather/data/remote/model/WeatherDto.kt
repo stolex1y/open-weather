@@ -5,5 +5,5 @@ interface WeatherDto {
     var visibility: Int?
     var clouds: CloudsDto?
     var wind: WindDto?
-    var timestamp: Long?
+    var timestamp: Long
 }

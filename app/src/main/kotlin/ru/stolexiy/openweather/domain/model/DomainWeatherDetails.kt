@@ -10,7 +10,7 @@ data class DomainWeatherDetails(
     override val clouds: Int?,
     override val precipitation: DomainPrecipitation,
     override val wind: DomainWind,
-    override val timestamp: Calendar?,
+    override val timestamp: Calendar,
     override val visibility: Int?,
     override val unitsOfMeasure: UnitsOfMeasure = UnitsOfMeasure.METRIC
 ) : DomainWeather {

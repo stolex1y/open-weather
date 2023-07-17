@@ -23,14 +23,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/main_card"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="25dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/main_layout"
@@ -56,13 +58,13 @@
                             android:gravity="center"
                             android:text="@string/humidity"
                             android:textAppearance="?attr/textAppearanceLabelMedium"
-                            app:layout_constraintEnd_toStartOf="@+id/visibility_label"
+                            app:layout_constraintEnd_toStartOf="@+id/wind_speed_label"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/main_heading" />
 
                         <TextView
-                            android:id="@+id/visibility_label"
+                            android:id="@+id/wind_speed_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -81,11 +83,11 @@
                             android:gravity="center"
                             android:text="@string/pressure"
                             android:textAppearance="?attr/textAppearanceLabelMedium"
-                            app:layout_constraintBottom_toBottomOf="@+id/visibility_label"
+                            app:layout_constraintBottom_toBottomOf="@+id/wind_speed_label"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/visibility_label"
-                            app:layout_constraintTop_toTopOf="@+id/visibility_label" />
+                            app:layout_constraintStart_toEndOf="@+id/wind_speed_label"
+                            app:layout_constraintTop_toTopOf="@+id/wind_speed_label" />
 
                         <TextView
                             android:id="@+id/humidity_value"
@@ -93,7 +95,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:gravity="center"
-                            android:text='@{currentWeather.humidity ?? "—"}'
+                            android:text='@{currentWeather.mainInfo.humidity ?? "—"}'
                             android:textAppearance="?attr/textAppearanceHeadlineSmall"
                             app:layout_constraintEnd_toStartOf="@+id/visibility_value"
                             app:layout_constraintStart_toStartOf="@id/humidity_label"
@@ -105,7 +107,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text='@{currentWeather.visibility ?? "—"}'
+                            android:text='@{currentWeather.mainInfo.visibility ?? "—"}'
                             android:textAppearance="?attr/textAppearanceHeadlineSmall"
                             app:layout_constraintBottom_toBottomOf="@+id/humidity_value"
                             app:layout_constraintEnd_toStartOf="@+id/pressure_value"
@@ -119,7 +121,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text='@{currentWeather.pressure ?? "—"}'
+                            android:text='@{currentWeather.mainInfo.pressure ?? "—"}'
                             android:textAppearance="?attr/textAppearanceHeadlineSmall"
                             app:layout_constraintBottom_toBottomOf="@+id/visibility_value"
                             app:layout_constraintEnd_toEndOf="@+id/pressure_label"
@@ -137,6 +139,7 @@
                     android:id="@+id/temperature_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -244,6 +247,7 @@
                     android:id="@+id/wind_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -351,7 +355,9 @@
                     android:id="@+id/precipitation_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/precipitation_layout"

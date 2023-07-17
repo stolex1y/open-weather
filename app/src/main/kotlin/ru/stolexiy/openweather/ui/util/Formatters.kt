@@ -6,13 +6,19 @@ import ru.stolexiy.openweather.R
 import ru.stolexiy.openweather.domain.model.UnitsOfDistanceMeasure
 import ru.stolexiy.openweather.domain.model.UnitsOfTempMeasure
 import ru.stolexiy.openweather.domain.model.UnitsOfWindMeasure
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import kotlin.math.roundToInt
 
 object Formatters {
     private const val COORDINATES_FORMAT = "%03.2f° %03.2f°"
+    const val DMY_DATE = "dd.MM.yyyy"
+    const val DMY_DATETIME = "dd.MM.yyyy HH:mm"
+    const val HM_TIME = "HH:mm"
 
     fun Double.formatAsTemperature(units: UnitsOfTempMeasure): String {
-        return "%d%s".format(this.roundToInt(), units.sign)
+        return "+%d%s".format(this.roundToInt(), units.sign)
     }
 
     fun Int.formatAsPercents(): String {
@@ -48,6 +54,13 @@ object Formatters {
 
     fun Int.formatAsDistance(context: Context, units: UnitsOfDistanceMeasure): String {
         return "$this ${context.getString(units.sign)}"
+    }
+
+    fun Calendar?.toString(pattern: String): String {
+        return if (this == null)
+            ""
+        else
+            SimpleDateFormat(pattern, Locale.getDefault()).format(this.time)
     }
 
     @StringRes

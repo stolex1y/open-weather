@@ -38,4 +38,7 @@
     <string name="wind">Ветер</string>
     <string name="meters">м</string>
     <string name="miles">миль</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="sunrise">Восход</string>
+    <string name="sunset">Закат</string>
 </resources>

@@ -2,6 +2,7 @@ package ru.stolexiy.openweather.data.remote.model.current
 
 import com.google.gson.annotations.SerializedName
 import ru.stolexiy.openweather.common.DateUtils.toCalendar
+import ru.stolexiy.openweather.common.DateUtils.toCalendarFromSeconds
 import ru.stolexiy.openweather.data.remote.model.CloudsDto
 import ru.stolexiy.openweather.data.remote.model.CoordinatesDto
 import ru.stolexiy.openweather.data.remote.model.WeatherDto
@@ -17,7 +18,7 @@ data class CurrentWeatherDto(
     override var clouds: CloudsDto?,
     override var wind: WindDto?,
     @SerializedName("dt")
-    override var timestamp: Long?,
+    override var timestamp: Long = 0L,
     @SerializedName("coord")
     var coordinates: CoordinatesDto = CoordinatesDto(),
     @SerializedName("rain")
@@ -34,8 +35,8 @@ data class CurrentWeatherDto(
             latitude = coordinates.latitude,
             longitude = coordinates.longitude,
             city = city,
-            sunrise = sun.sunrise.toCalendar(),
-            sunset = sun.sunset.toCalendar()
+            sunrise = sun.sunrise.toCalendarFromSeconds(),
+            sunset = sun.sunset.toCalendarFromSeconds()
         ),
         temperature = main.toDomainTemperature(),
         pressure = main.pressure,
@@ -48,7 +49,7 @@ data class CurrentWeatherDto(
             snow3h = snow?.volume3h
         ),
         wind = (wind ?: WindDto()).toDomain(),
-        timestamp = timestamp?.toCalendar(),
+        timestamp = timestamp.toCalendarFromSeconds(),
         visibility = visibility
     )
 }

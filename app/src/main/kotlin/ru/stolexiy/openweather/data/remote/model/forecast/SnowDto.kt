@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class SnowDto(
     @SerializedName("3h")
-    var volume3h: Int? = null
+    var volume3h: Double? = null
 )
