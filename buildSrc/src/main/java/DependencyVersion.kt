@@ -6,10 +6,10 @@ internal object DependencyVersion {
     //libs
     const val coreKtx = "1.10.0"
     const val appCompat = "1.6.1"
-    const val activityKtx = "1.7.0"
+    const val activity = "1.7.2"
     const val fragmentKtx = "1.5.6"
     const val constraintLayout = "2.0.0-beta8"
-    const val navigation = "2.5.3"
+    const val navigation = "2.6.0"
     const val workManager = "2.8.1"
     const val room = "2.5.1"
     const val lifecycle = "2.6.1"
@@ -32,6 +32,7 @@ internal object DependencyVersion {
     const val retrofit = "2.9.0"
     const val swipeRefreshLayout = "1.2.0-alpha01"
     const val splashScreen = "1.0.0"
+    const val composeBom = "2023.06.01"
 
     //test
     const val junit4 = "4.13.2"

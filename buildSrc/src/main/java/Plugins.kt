@@ -9,6 +9,7 @@ object Plugins {
     const val JAVA_LIBRARY = "java-library"
     const val JAVA = "org.gradle.java"
     const val HILT = "com.google.dagger.hilt.android"
+    const val KOTLIN_PARCELIZE = "kotlin-parcelize"
 }
 
 object PluginVersions {

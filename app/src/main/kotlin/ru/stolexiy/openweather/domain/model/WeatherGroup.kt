@@ -12,6 +12,7 @@ enum class WeatherGroup(
     RAIN(R.drawable.rainy, R.string.rain),
     SNOW(R.drawable.snowy, R.string.snow),
     CLOUDY(R.drawable.cloudy, R.string.cloudy),
-    CLEAR(R.drawable.sunny, R.string.clear),
+    CLEAR_DAY(R.drawable.sunny, R.string.clear),
+    CLEAR_NIGHT(R.drawable.moon, R.string.clear),
     MIST(R.drawable.foggy, R.string.mist),
 }

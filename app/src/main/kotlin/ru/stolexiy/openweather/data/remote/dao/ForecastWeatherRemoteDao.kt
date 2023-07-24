@@ -14,7 +14,7 @@ interface ForecastWeatherRemoteDao {
     data class Response(
         @SerializedName("list")
         var forecast: List<WeatherForecastDto>,
-        var city: CityDto = CityDto(),
+        var city: CityDto,
     ) {
         fun toDomain(): List<DomainWeatherForecast> = forecast.map {
             it.toDomain(city)

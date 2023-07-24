@@ -1,12 +1,15 @@
 package ru.stolexiy.openweather.ui.util
 
 import android.os.Bundle
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalSavedStateRegistryOwner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.savedstate.SavedStateRegistryOwner
 
 @Suppress("UNCHECKED_CAST")
@@ -29,5 +32,16 @@ class CustomAbstractSavedStateViewModelFactory<out T : ViewModel>(
         ) = viewModels<T>(ownerProducer) {
             CustomAbstractSavedStateViewModelFactory(this, viewModelProducer, this.arguments)
         }
+
+        @Composable
+        inline fun <reified T : ViewModel> assistedViewModels(
+            noinline viewModelProducer: (SavedStateHandle) -> T
+        ) = viewModel<T>(
+            factory = CustomAbstractSavedStateViewModelFactory(
+                LocalSavedStateRegistryOwner.current,
+                viewModelProducer,
+                null
+            )
+        )
     }
 }

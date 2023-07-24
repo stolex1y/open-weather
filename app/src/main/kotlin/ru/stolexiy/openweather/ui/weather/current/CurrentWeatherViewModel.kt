@@ -1,30 +1,28 @@
 package ru.stolexiy.openweather.ui.weather.current
 
 import androidx.annotation.StringRes
-import androidx.lifecycle.SavedStateHandle
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.CoroutineScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import ru.stolexiy.openweather.common.FlowExtensions.mapLatestResult
-import ru.stolexiy.openweather.core.di.CoroutineModule
 import ru.stolexiy.openweather.domain.model.DomainWeatherDetails
 import ru.stolexiy.openweather.domain.repository.CurrentWeatherGettingRepository
 import ru.stolexiy.openweather.ui.util.udf.AbstractViewModel
 import ru.stolexiy.openweather.ui.util.udf.IData
 import ru.stolexiy.openweather.ui.util.udf.IEvent
 import ru.stolexiy.openweather.ui.util.udf.IState
-import javax.inject.Named
+import javax.inject.Inject
 
-class CurrentWeatherViewModel @AssistedInject constructor(
+@HiltViewModel
+class CurrentWeatherViewModel @Inject constructor(
     private val getCurrentWeather: CurrentWeatherGettingRepository,
-    @Named(CoroutineModule.APPLICATION_SCOPE) applicationScope: CoroutineScope,
-    @Assisted savedStateHandle: SavedStateHandle
 ) : AbstractViewModel<CurrentWeatherViewModel.Event, CurrentWeatherViewModel.Data, CurrentWeatherViewModel.State>(
     Data(),
     stateProducer
 ) {
+
+    fun refreshData() {
+        dispatchEvent(Event.Load)
+    }
 
     override fun dispatchEvent(event: Event) {
         when (event) {
@@ -66,10 +64,5 @@ class CurrentWeatherViewModel @AssistedInject constructor(
 
     sealed interface Event : IEvent {
         object Load : Event
-    }
-
-    @AssistedFactory
-    interface Factory {
-        fun create(savedStateHandle: SavedStateHandle): CurrentWeatherViewModel
     }
 }

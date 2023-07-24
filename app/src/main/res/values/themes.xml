@@ -39,7 +39,6 @@
             true
         </item>
 
-        <item name="bottomNavigationStyle">@style/Widget.OpenWeather.NavigationBar</item>
         <item name="materialCardViewStyle">@style/Widget.OpenWeather.CardView</item>
         <item name="background">@drawable/background</item>
     </style>

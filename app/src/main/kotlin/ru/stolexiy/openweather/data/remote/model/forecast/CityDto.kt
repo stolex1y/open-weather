@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 import ru.stolexiy.openweather.data.remote.model.CoordinatesDto
 
 data class CityDto(
-    var name: String? = null,
+    var name: String?,
     @SerializedName("coord")
-    var coordinates: CoordinatesDto = CoordinatesDto(),
-    var sunrise: Long = 0,
-    var sunset: Long = 0,
+    var coordinates: CoordinatesDto,
+    var sunrise: Long,
+    var sunset: Long,
 )

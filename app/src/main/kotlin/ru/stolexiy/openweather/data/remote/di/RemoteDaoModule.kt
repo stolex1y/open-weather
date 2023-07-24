@@ -20,7 +20,7 @@ interface RemoteDaoModule {
     companion object {
         private val logInterceptor: Interceptor by lazy {
             Interceptor { chain ->
-                Timber.d("make request to ${chain.request().url()}")
+                Timber.d("make request to ${chain.request().url}")
                 chain.proceed(chain.request())
             }
         }
@@ -28,7 +28,7 @@ interface RemoteDaoModule {
         private val authInterceptor: Interceptor by lazy {
             Interceptor { chain ->
                 val url = chain.request()
-                    .url()
+                    .url
                     .newBuilder()
                     .addQueryParameter(BuildConfig.API_AUTH_PARAM, BuildConfig.API_KEY)
                     .build()

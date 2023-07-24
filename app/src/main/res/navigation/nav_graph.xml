@@ -9,7 +9,7 @@
         android:name="ru.stolexiy.openweather.ui.weather.current.CurrentWeatherFragment" />
     <fragment
         android:id="@+id/forecast_weather"
-        android:name="ru.stolexiy.openweather.ui.weather.forecast.ForecastWeatherFragment" />
+        android:name="ru.stolexiy.openweather.ui.weather.forecast.WeatherForecastFragment" />
     <fragment
         android:id="@+id/weather_details"
         android:name="ru.stolexiy.openweather.ui.weather.details.CurrentWeatherDetailsFragment" />

@@ -16,6 +16,7 @@ object Formatters {
     const val DMY_DATE = "dd.MM.yyyy"
     const val DMY_DATETIME = "dd.MM.yyyy HH:mm"
     const val HM_TIME = "HH:mm"
+    const val DM_DATE = "dd.MM"
 
     fun Double.formatAsTemperature(units: UnitsOfTempMeasure): String {
         return "+%d%s".format(this.roundToInt(), units.sign)

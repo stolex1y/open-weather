@@ -24,7 +24,7 @@ object AppDependencies {
     }
 
     private const val activityKtx =
-        "androidx.activity:activity-ktx:${DependencyVersion.activityKtx}"
+        "androidx.activity:activity-ktx:${DependencyVersion.activity}"
 
     fun DependencyHandler.activityKtx() {
         add(ConfigurationName.IMPLEMENTATION.configName, activityKtx)
@@ -281,6 +281,57 @@ object AppDependencies {
 
     fun DependencyHandler.splashScreen() {
         add(ConfigurationName.IMPLEMENTATION.configName, splashScreen)
+    }
+
+    private const val composeBom =
+        "androidx.compose:compose-bom:2023.06.01"
+    private const val composeMaterial3 =
+        "androidx.compose.material3:material3"
+    private const val composeFoundation =
+        "androidx.compose.foundation:foundation"
+    private const val composePreview =
+        "androidx.compose.ui:ui-tooling-preview"
+    private const val composeDebugPreview =
+        "androidx.compose.ui:ui-tooling"
+
+    private const val composeTestJunit =
+        "androidx.compose.ui:ui-test-junit4"
+    private const val composeTestManifest =
+        "androidx.compose.ui:ui-test-manifest"
+
+    private const val composeActivity =
+        "androidx.activity:activity-compose:${DependencyVersion.activity}"
+    private const val composeViewModel =
+        "androidx.lifecycle:lifecycle-viewmodel-compose:${DependencyVersion.lifecycle}"
+    private const val composeLiveData =
+        "androidx.compose.runtime:runtime-livedata"
+    private const val composeLifecycle =
+        "androidx.lifecycle:lifecycle-runtime-compose:${DependencyVersion.lifecycle}"
+
+    fun DependencyHandler.compose() {
+        val composeBom = platform(composeBom)
+        add(ConfigurationName.IMPLEMENTATION.configName, composeBom)
+        add(ConfigurationName.TEST_IMPLEMENTATION.configName, composeBom)
+
+        add(ConfigurationName.IMPLEMENTATION.configName, composeMaterial3)
+        add(ConfigurationName.IMPLEMENTATION.configName, composeFoundation)
+        add(ConfigurationName.IMPLEMENTATION.configName, composePreview)
+        add(ConfigurationName.DEBUG_IMPLEMENTATION.configName, composeDebugPreview)
+
+        add(ConfigurationName.TEST_IMPLEMENTATION.configName, composeTestJunit)
+        add(ConfigurationName.DEBUG_IMPLEMENTATION.configName, composeTestManifest)
+
+        add(ConfigurationName.IMPLEMENTATION.configName, composeActivity)
+        add(ConfigurationName.IMPLEMENTATION.configName, composeViewModel)
+        add(ConfigurationName.IMPLEMENTATION.configName, composeLiveData)
+        add(ConfigurationName.IMPLEMENTATION.configName, composeLifecycle)
+    }
+
+    private const val composeNavigation =
+        "androidx.navigation:navigation-compose:${DependencyVersion.navigation}"
+
+    fun DependencyHandler.composeNavigation() {
+        add(ConfigurationName.RUNTIME_ONLY.configName, composeNavigation)
     }
 
     enum class ConfigurationName(val configName: String) {
