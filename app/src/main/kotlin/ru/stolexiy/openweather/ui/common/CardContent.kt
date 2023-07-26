@@ -4,10 +4,11 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridScope
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +32,7 @@ fun InfoColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.then(modifier)
     ) {
-        Text(text = name, style = MaterialTheme.typography.labelMedium)
+        Text(text = name, style = MaterialTheme.typography.labelMedium, maxLines = 1)
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
@@ -46,15 +47,16 @@ fun InfoColumn(
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun InfosRow(
     modifier: Modifier = Modifier,
-    content: @Composable RowScope.() -> Unit
+    itemsInRow: Int = 3,
+    content: LazyGridScope.() -> Unit
 ) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
+    LazyVerticalGrid(
+        horizontalArrangement = Arrangement.Start,
+        columns = GridCells.Fixed(itemsInRow),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
         modifier = Modifier
             .fillMaxWidth()
             .then(modifier)
@@ -96,4 +98,29 @@ fun InfoColumnWithImage() {
 @Composable
 fun InfoColumnWithTextAndImage() {
     InfoColumn(name = "Name", value = "value", image = R.drawable.sun)
+}
+
+@Composable
+fun DateTimeRow(
+    modifier: Modifier = Modifier,
+    date: String?,
+    time: String?
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(
+            10.dp,
+            Alignment.CenterHorizontally
+        ),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        TextWithDefaultValue(
+            text = date,
+            style = MaterialTheme.typography.bodySmall
+        )
+        TextWithDefaultValue(
+            text = time,
+            style = MaterialTheme.typography.bodySmall
+        )
+    }
 }

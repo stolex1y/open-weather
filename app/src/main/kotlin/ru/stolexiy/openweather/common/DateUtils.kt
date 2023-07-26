@@ -18,4 +18,15 @@ object DateUtils {
             add(Calendar.MINUTE, m)
         }
     }
+
+    fun Calendar.roundedHours(): Calendar {
+        return (this.clone() as Calendar).apply {
+            val min = get(Calendar.MINUTE)
+            if (min >= 30)
+                add(Calendar.HOUR, 1)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+    }
 }

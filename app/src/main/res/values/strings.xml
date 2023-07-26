@@ -45,4 +45,6 @@
     <string name="cloudy">Облачно</string>
     <string name="mist">Туман</string>
     <string name="clear">Ясно</string>
+    <string name="wind_direction">Направление ветра</string>
+    <string name="precipitation_probability">Вероятность осадков</string>
 </resources>

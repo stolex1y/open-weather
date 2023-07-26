@@ -6,10 +6,8 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -36,7 +34,7 @@ import kotlinx.coroutines.flow.map
 import ru.stolexiy.openweather.R
 import ru.stolexiy.openweather.ui.common.DrawableImage
 import ru.stolexiy.openweather.ui.common.InfoColumn
-import ru.stolexiy.openweather.ui.common.InfosRow
+import ru.stolexiy.openweather.ui.common.MainInfoCard
 import ru.stolexiy.openweather.ui.common.OpenWeatherCard
 import ru.stolexiy.openweather.ui.common.OpenWeatherTopAppBar
 import ru.stolexiy.openweather.ui.common.PullToRefresh
@@ -110,7 +108,8 @@ private fun Content(
                 .padding(top = 25.dp, start = 20.dp, end = 20.dp, bottom = 25.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp, Alignment.Top)
         ) {
-            MainInfoCard(
+            MainInfo(
+                modifier = Modifier.fillMaxWidth(),
                 mainInfo = weather?.mainInfo
             )
             Row(
@@ -135,65 +134,35 @@ private fun Content(
 }
 
 @Composable
-private fun MainInfoCard(
+private fun MainInfo(
     modifier: Modifier = Modifier,
     mainInfo: MainInfo?
 ) {
-    OpenWeatherCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .then(modifier)
+    MainInfoCard(
+        modifier = modifier,
+        date = mainInfo?.dateStr,
+        time = mainInfo?.timeStr,
+        temperature = mainInfo?.temperature,
+        weatherGroupIcon = mainInfo?.weatherGroupIcon,
+        weatherGroupLabel = mainInfo?.weatherGroupLabel
     ) {
-        Column(
-            modifier = Modifier.padding(top = 15.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
-        ) {
-            DateTimeRow(
-                modifier = Modifier.fillMaxWidth(),
-                date = mainInfo?.dateStr,
-                time = mainInfo?.timeStr
+        item {
+            InfoColumn(
+                name = R.string.humidity,
+                value = mainInfo?.humidity
             )
-            Spacer(modifier = Modifier.height(5.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(
-                    10.dp,
-                    Alignment.CenterHorizontally
-                ),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                TextWithDefaultValue(
-                    text = mainInfo?.temperature,
-                    style = MaterialTheme.typography.displayLarge
-                )
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(6.dp)
-                ) {
-                    DrawableImage(
-                        resourceId = mainInfo?.weatherGroupIcon,
-                        contentDescription = null
-                    )
-                    TextWithDefaultValue(
-                        textId = mainInfo?.weatherGroupLabel,
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                }
-            }
-            Spacer(modifier = Modifier.height(30.dp))
-            InfosRow {
-                InfoColumn(
-                    name = R.string.humidity,
-                    value = mainInfo?.humidity
-                )
-                InfoColumn(
-                    name = R.string.wind_speed,
-                    value = mainInfo?.windSpeed
-                )
-                InfoColumn(
-                    name = R.string.pressure,
-                    value = mainInfo?.pressure
-                )
-            }
+        }
+        item {
+            InfoColumn(
+                name = R.string.wind_speed,
+                value = mainInfo?.windSpeed
+            )
+        }
+        item {
+            InfoColumn(
+                name = R.string.pressure,
+                value = mainInfo?.pressure
+            )
         }
     }
 }
@@ -237,31 +206,6 @@ private fun BottomBar(
         currentTab = CURRENT_WEATHER_DESTINATION,
         onNavigateToRoute = onNavigateToRoute
     )
-}
-
-@Composable
-private fun DateTimeRow(
-    modifier: Modifier = Modifier,
-    date: String?,
-    time: String?
-) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(
-            10.dp,
-            Alignment.CenterHorizontally
-        ),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        TextWithDefaultValue(
-            text = date,
-            style = MaterialTheme.typography.bodySmall
-        )
-        TextWithDefaultValue(
-            text = time,
-            style = MaterialTheme.typography.bodySmall
-        )
-    }
 }
 
 @Composable

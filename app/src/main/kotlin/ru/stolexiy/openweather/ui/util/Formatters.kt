@@ -30,6 +30,13 @@ object Formatters {
         return "%0${afterComma}.${afterComma}f".format(this)
     }
 
+    fun Double.formatAsPercents(afterComma: Int): String {
+        return if (afterComma == 0)
+            "${this.roundToInt()}%"
+        else
+            "%0${afterComma}.${afterComma}f%%".format(this)
+    }
+
     fun Int.formatAsPressure(context: Context): String {
         return "$this ${context.getString(R.string.hectopascal)}"
     }

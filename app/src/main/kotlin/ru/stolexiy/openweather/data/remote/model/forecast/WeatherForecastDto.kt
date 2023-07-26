@@ -53,7 +53,7 @@ data class WeatherForecastDto(
             ),
             wind = (wind ?: WindDto()).toDomain(),
             timestamp = timestampCalendar.clone() as Calendar,
-            precipitationProb = precipitationProb,
+            precipitationProb = precipitationProb * 100,
             visibility = visibility,
             weatherGroup = weatherGroups.first().toDomain(
                 timestamp = timestampCalendar.clone() as Calendar,

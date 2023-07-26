@@ -26,7 +26,6 @@ fun PullToRefresh(
     Box(
         modifier = modifier
             .pullRefresh(pullRefreshState)
-            .verticalScroll(rememberScrollState())
     ) {
         content()
         PullRefreshIndicator(

@@ -5,13 +5,11 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -118,18 +116,30 @@ private fun Content(
 @Composable
 private fun MainInfoCard(mainInfo: MainInfo?) {
     InfoCard(name = R.string.main_info) {
-        InfoColumn(name = R.string.humidity, value = mainInfo?.humidity)
-        InfoColumn(name = R.string.visibility, value = mainInfo?.visibility)
-        InfoColumn(name = R.string.pressure, value = mainInfo?.pressure)
+        item {
+            InfoColumn(name = R.string.humidity, value = mainInfo?.humidity)
+        }
+        item {
+            InfoColumn(name = R.string.visibility, value = mainInfo?.visibility)
+        }
+        item {
+            InfoColumn(name = R.string.pressure, value = mainInfo?.pressure)
+        }
     }
 }
 
 @Composable
 private fun TempCard(temp: Temperature?) {
     InfoCard(name = R.string.temperature) {
-        InfoColumn(name = R.string.feels_like, value = temp?.feelsLike)
-        InfoColumn(name = R.string.max, value = temp?.max)
-        InfoColumn(name = R.string.min, value = temp?.min)
+        item {
+            InfoColumn(name = R.string.feels_like, value = temp?.feelsLike)
+        }
+        item {
+            InfoColumn(name = R.string.max, value = temp?.max)
+        }
+        item {
+            InfoColumn(name = R.string.min, value = temp?.min)
+        }
     }
 }
 
@@ -138,18 +148,23 @@ private fun PrecipitationCard(precipitation: Precipitation?) {
     if (precipitation != null && precipitation.hasPrecipitation) {
         InfoCard(
             name = R.string.precipitation,
-            modifier = Modifier.height(IntrinsicSize.Min)
         ) {
-            Image(
-                contentScale = ContentScale.FillHeight,
-                modifier = Modifier.fillMaxHeight(),
-                painter = painterResource(id = precipitation.icon!!),
-                contentDescription = stringResource(
-                    id = precipitation.iconDescription!!
+            item {
+                Image(
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxHeight(),
+                    painter = painterResource(id = precipitation.icon!!),
+                    contentDescription = stringResource(
+                        id = precipitation.iconDescription!!
+                    )
                 )
-            )
-            InfoColumn(name = R.string.per_1_h, value = precipitation.per1h)
-            InfoColumn(name = R.string.per_3_h, value = precipitation.per3h)
+            }
+            item {
+                InfoColumn(name = R.string.per_1_h, value = precipitation.per1h)
+            }
+            item {
+                InfoColumn(name = R.string.per_3_h, value = precipitation.per3h)
+            }
         }
     }
 }
@@ -157,9 +172,15 @@ private fun PrecipitationCard(precipitation: Precipitation?) {
 @Composable
 private fun WindCard(wind: Wind?) {
     InfoCard(name = R.string.wind) {
-        InfoColumn(name = R.string.direction, value = wind?.direction)
-        InfoColumn(name = R.string.speed, value = wind?.speed)
-        InfoColumn(name = R.string.gust, value = wind?.gust)
+        item {
+            InfoColumn(name = R.string.direction, value = wind?.direction)
+        }
+        item {
+            InfoColumn(name = R.string.speed, value = wind?.speed)
+        }
+        item {
+            InfoColumn(name = R.string.gust, value = wind?.gust)
+        }
     }
 }
 
@@ -177,7 +198,7 @@ private fun BottomBar(
 private fun InfoCard(
     modifier: Modifier = Modifier,
     @StringRes name: Int,
-    rowInfos: @Composable RowScope.() -> Unit
+    rowInfos: LazyGridScope.() -> Unit
 ) {
     OpenWeatherCard(
         modifier = Modifier
@@ -187,7 +208,7 @@ private fun InfoCard(
         Column(
             verticalArrangement = Arrangement.spacedBy(30.dp),
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(20.dp)
         ) {
             Text(text = stringResource(id = name), style = MaterialTheme.typography.titleLarge)
